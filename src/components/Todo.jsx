@@ -1,12 +1,12 @@
 import React from 'react';
 import '../styles/Todo.css';
 
-const Todo = () => {
+const Todo = ({todo}) => {
   return (
     <div className='todo'>
-      <span className='todo_complete'><i class="fa-solid fa-check-double"></i></span>
-      <li className='todo_task'> Asar Carne Lorem y comer todo el día</li>
-      <span className='todo_delete'><i class="fa-solid fa-trash-can"></i></span>
+      <span className='todo_complete'><i className="fa-solid fa-check-double"></i></span>
+      <li className='todo_task'>{todo.task}</li>
+      <span className='todo_delete'><i className="fa-solid fa-trash-can"></i></span>
     </div>
   )
 }

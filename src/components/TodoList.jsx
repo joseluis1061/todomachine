@@ -2,15 +2,16 @@ import React from 'react';
 import Todo from './Todo';
 import '../styles/TodoList.css';
 
-const TodoList = () => {
+const TodoList = ({todoTask}) => {
   return (
     <section className='todo_list'>
       <div className="todo_list_container">
-        <h3>Todo tasks</h3>
-        <Todo/>
-        <Todo/>
-        <Todo/>
-        <Todo/>
+        <h3><span className="purple">Todo</span>'s tasks</h3>
+        {
+          todoTask.map((todo, id)=>{
+            return <Todo todo ={todo} key={id}/>
+          })
+        }
       </div>
     </section>
   )

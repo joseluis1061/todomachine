@@ -18,7 +18,7 @@
 }
 .todo_task{
   padding: 0 15px;
-  text-align: justify;
+  text-align: Center;
   color: var(--white);
 }
 .todo_delete{
