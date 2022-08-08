@@ -1,0 +1,7 @@
+.layout{
+  background-color: var(--blue-light);
+}
+.layout_container{
+  max-width: 768px;
+  margin: 0 auto;
+}
