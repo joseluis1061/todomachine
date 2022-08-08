@@ -6,7 +6,7 @@ const Search = () => {
     <form className='search'>
       <div className="search_container">
       <span className="search_icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-      <input type="text" className='search_input'/>
+      <input type="text" placeholder='Search to do...' className='search_input'/>
       </div>
     </form>
   )
