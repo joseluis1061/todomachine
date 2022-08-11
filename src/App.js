@@ -5,6 +5,8 @@ import TodoList from './components/TodoList';
 import BtnNewTodo from './components/BtnNewTodo';
 import NewToDo from './components/NewToDo';
 
+import useInitialState from './hooks/useInitState';
+
 import { useState } from 'react';
 import './styles//App.css';
 
@@ -16,13 +18,18 @@ const local = [
 ];
 
 function App() {
-  const [todoTask, useTodoTask] = useState(local);
-  console.log(todoTask)
+  //const [todoTask, useTodoTask] = useState(local);
+  const [todoTask, setTodoTask, searchTask, setSearchTask] = useInitialState();
+  //console.log('todoTask')
+  //console.log(todoTask)
+
   return (
     <div className="App">
       <Layout>
         <Header todoTask = {todoTask}/> 
-        <Search/>
+        <Search
+          setSearchTask = {setSearchTask}
+        />
         <TodoList todoTask={todoTask}/>
         <BtnNewTodo/>
         {/* <NewToDo/> */}
