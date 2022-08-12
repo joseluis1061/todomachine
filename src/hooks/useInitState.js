@@ -19,7 +19,7 @@ const useInitState = () => {
     if(Object.keys(searchTask).length>0){
       const keySearch = searchTask.toLowerCase();
       const todoFilters = todoListTask.filter((todo)=>{
-        return todo.task.toLowerCase() === keySearch
+        return todo.task.toLowerCase().includes(keySearch);
       });
       if(Object.keys(todoFilters).length >0){
         setTodoTask(todoFilters);
