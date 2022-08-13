@@ -28,3 +28,10 @@
 .todo_delete:hover{
   color: rgb(197, 26, 26);
 }
+
+.green_completed{
+  color: greenyellow;
+}
+.red_uncompleted{
+  color: red;
+}

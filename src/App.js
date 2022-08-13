@@ -10,27 +10,27 @@ import useInitialState from './hooks/useInitState';
 import { useState } from 'react';
 import './styles//App.css';
 
-const local = [
-  {task:'Comer', complete:true},
-  {task:'Reir',  complete:false},
-  {task:'Sacar los gatos', complete:true},
-  {task:'Cocinar', complete:true}
-];
-
 function App() {
-  //const [todoTask, useTodoTask] = useState(local);
-  const [todoTask, setTodoTask, searchTask, setSearchTask] = useInitialState();
-  //console.log('todoTask')
-  //console.log(todoTask)
-
+  const [
+    todoListTask, 
+    todoTask, 
+    setTodoTask, 
+    searchTask, 
+    setSearchTask, 
+    setCompletedTodo,
+    setDeledTodo] = useInitialState();
   return (
     <div className="App">
       <Layout>
-        <Header todoTask = {todoTask}/> 
+        <Header todoListTask = {todoListTask}/> 
         <Search
           setSearchTask = {setSearchTask}
         />
-        <TodoList todoTask={todoTask}/>
+        <TodoList 
+          todoTask = { todoTask }
+          setCompletedTodo = { setCompletedTodo }
+          setDeledTodo = { setDeledTodo }
+        />
         <BtnNewTodo/>
         {/* <NewToDo/> */}
       </Layout>
