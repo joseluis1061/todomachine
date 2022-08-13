@@ -16,6 +16,7 @@ const useInitState = () => {
   const [completedTodo, setCompletedTodo] = useState({});
   const [deledTodo, setDeledTodo] = useState({});
   const [addTodo, setAddTodo] = useState({});
+
   //Buscar una tarea
   useEffect(()=> {
     if(Object.keys(searchTask).length>0){
@@ -27,8 +28,9 @@ const useInitState = () => {
         setTodoTask(todoFilters);
         return
       }
+    }else{
+      setTodoTask(todoListTask);
     }
-    setTodoTask(todoListTask);
   }, [searchTask]);
 
   //Agregar estado completado a una tarea
