@@ -1,8 +1,11 @@
 import React from 'react';
 import Todo from './Todo';
+import { useContext } from 'react';
+import AppContext from '../context/AppContext';
 import '../styles/TodoList.css';
 
-const TodoList = ({ todoTask, setCompletedTodo, setDeledTodo }) => {
+const TodoList = () => {
+  const { todoTask, setCompletedTodo, setDeledTodo } = useContext(AppContext);
   return (
     <section className='todo_list'>
       <div className="todo_list_container">

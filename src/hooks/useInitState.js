@@ -45,7 +45,7 @@ const useInitState = () => {
       setCompletedTodo({});
       setSearchTask('');
     }    
-  }, [completedTodo])
+  }, [completedTodo]);
 
   //Deled ToDo
   useEffect(()=>{    
@@ -58,7 +58,7 @@ const useInitState = () => {
       setTodoTask(filterDelete);
       setSearchTask('');
     }    
-  }, [deledTodo])
+  }, [deledTodo]);
 
   //Add ToDo
   useEffect(()=>{    
@@ -70,10 +70,10 @@ const useInitState = () => {
       setSearchTask('');
       setAddTodo({});
     }    
-  }, [addTodo])
+  }, [addTodo]);
 
 
-  return [
+  return {
     todoListTask,
     todoTask,
     searchTask,
@@ -81,7 +81,7 @@ const useInitState = () => {
     setCompletedTodo, 
     setDeledTodo,
     setAddTodo
-  ]
+  }
 }
 
-export default useInitState
+export default useInitState;

@@ -1,8 +1,10 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import AppContext from '../context/AppContext';
 import '../styles/Header.css';
 
-const Header = ({ todoListTask }) => {
+const Header = () => {
+  const { todoListTask } = useContext(AppContext);
   const [complete, setComplete] = useState(0);
   useEffect(()=>{
     let total = todoListTask.reduce((total, current)=> {

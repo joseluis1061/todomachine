@@ -1,6 +1,9 @@
 import '../styles/Search.css';
+import { useContext } from 'react';
+import AppContext from '../context/AppContext';
 
-const Search = ({searchTask, setSearchTask}) => {
+const Search = () => {
+  const {searchTask, setSearchTask} = useContext(AppContext)
   const handleSearch = (e)=>{
     const data = e.target.value;
     setSearchTask(data);
