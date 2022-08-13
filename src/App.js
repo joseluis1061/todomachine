@@ -6,24 +6,23 @@ import BtnNewTodo from './components/BtnNewTodo';
 import NewToDo from './components/NewToDo';
 
 import useInitialState from './hooks/useInitState';
-
-import { useState } from 'react';
 import './styles//App.css';
 
 function App() {
   const [
     todoListTask, 
     todoTask, 
-    setTodoTask, 
     searchTask, 
     setSearchTask, 
     setCompletedTodo,
-    setDeledTodo] = useInitialState();
+    setDeledTodo,
+    setAddTodo] = useInitialState();
   return (
     <div className="App">
       <Layout>
         <Header todoListTask = {todoListTask}/> 
         <Search
+          searchTask = {searchTask}
           setSearchTask = {setSearchTask}
         />
         <TodoList 
@@ -32,7 +31,7 @@ function App() {
           setDeledTodo = { setDeledTodo }
         />
         <BtnNewTodo/>
-        {/* <NewToDo/> */}
+         <NewToDo setAddTodo = {setAddTodo}/>
       </Layout>
     </div>
   );

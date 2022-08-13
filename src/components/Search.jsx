@@ -1,6 +1,6 @@
 import '../styles/Search.css';
 
-const Search = ({setSearchTask}) => {
+const Search = ({searchTask, setSearchTask}) => {
   const handleSearch = (e)=>{
     const data = e.target.value;
     setSearchTask(data);
@@ -13,7 +13,8 @@ const Search = ({setSearchTask}) => {
       <input 
         type="text" 
         placeholder='Search to do...' 
-        className='search_input'    
+        className='search_input'
+        value = {searchTask}    
         onChange={handleSearch}
       />
       </div>

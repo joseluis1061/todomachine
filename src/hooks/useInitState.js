@@ -15,7 +15,7 @@ const useInitState = () => {
   const [searchTask, setSearchTask] = useState('');
   const [completedTodo, setCompletedTodo] = useState({});
   const [deledTodo, setDeledTodo] = useState({});
-  
+  const [addTodo, setAddTodo] = useState({});
   //Buscar una tarea
   useEffect(()=> {
     if(Object.keys(searchTask).length>0){
@@ -40,30 +40,46 @@ const useInitState = () => {
       )
       setTodoListTask(filter)
       setTodoTask(todoListTask)
+      setSearchTask('')
     }    
   }, [completedTodo])
 
-    //Deled ToDo
-    useEffect(()=>{    
-      if(Object.keys(deledTodo).length>0){
-        const filterDelete = todoListTask.filter(todoList=>
-          todoList.id !== deledTodo.id &&
-            todoList
-        )
-        setTodoListTask(filterDelete)
-        setTodoTask(filterDelete)
-      }    
-    }, [deledTodo])
+  //Deled ToDo
+  useEffect(()=>{    
+    if(Object.keys(deledTodo).length>0){
+      const filterDelete = todoListTask.filter(todoList=>
+        todoList.id !== deledTodo.id &&
+          todoList
+      )
+      setTodoListTask(filterDelete)
+      setTodoTask(filterDelete)
+      setSearchTask('')
+    }    
+  }, [deledTodo])
+
+  //Add ToDo
+  useEffect(()=>{    
+    if(Object.keys(addTodo).length>0){
+
+      let newTodoList = todoListTask;
+      newTodoList.push(addTodo);
+      setTodoListTask(newTodoList);
+      setTodoTask(todoListTask);
+
+      setSearchTask('');
+      setAddTodo({});
+    }    
+  }, [addTodo])
 
 
   return [
     todoListTask,
     todoTask,
-    setTodoTask,
     searchTask,
     setSearchTask,
     setCompletedTodo, 
-    setDeledTodo
+    setDeledTodo,
+    setAddTodo
   ]
 }
 
