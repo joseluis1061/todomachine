@@ -40,9 +40,10 @@ const useInitState = () => {
         todoList.id === completedTodo.id?
           completedTodo: todoList
       )
-      setTodoListTask(filter)
-      setTodoTask(todoListTask)
-      setSearchTask('')
+      setTodoListTask(filter);
+      setTodoTask(filter);
+      setCompletedTodo({});
+      setSearchTask('');
     }    
   }, [completedTodo])
 
@@ -53,21 +54,19 @@ const useInitState = () => {
         todoList.id !== deledTodo.id &&
           todoList
       )
-      setTodoListTask(filterDelete)
-      setTodoTask(filterDelete)
-      setSearchTask('')
+      setTodoListTask(filterDelete);
+      setTodoTask(filterDelete);
+      setSearchTask('');
     }    
   }, [deledTodo])
 
   //Add ToDo
   useEffect(()=>{    
     if(Object.keys(addTodo).length>0){
-
       let newTodoList = todoListTask;
       newTodoList.push(addTodo);
       setTodoListTask(newTodoList);
       setTodoTask(todoListTask);
-
       setSearchTask('');
       setAddTodo({});
     }    

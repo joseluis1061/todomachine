@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/Todo.css';
 
 const Todo = ({ todo, setCompletedTodo, setDeledTodo }) => {
+
   const handleCompleted = () =>{
     const changeCheck = todo;
     changeCheck.complete = !todo.complete;
@@ -9,8 +10,6 @@ const Todo = ({ todo, setCompletedTodo, setDeledTodo }) => {
   };
 
   const handleDeled = () =>{
-    console.log('Deled de estado click')
-    console.log(todo)
     const changeDeled = todo;
     setDeledTodo(changeDeled)
   };
