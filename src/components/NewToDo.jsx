@@ -5,7 +5,7 @@ import AppContext from '../context/AppContext';
 import '../styles/NewToDo.css';
 
 const NewToDo = () => {
-  const { setAddTodo } = useContext(AppContext);
+  const { setAddTodo, setActiveModal } = useContext(AppContext);
   const [texto, setTexto] = useState('');
 
   //Random id
@@ -18,7 +18,6 @@ const NewToDo = () => {
   const handleAddTodo = (e) => {
     e.preventDefault();
     if(Object.keys(texto).length > 0){
-      console.log('Agregar')
       const newTodo = {
         task: texto, 
         complete:false, 
@@ -26,6 +25,7 @@ const NewToDo = () => {
       }
       setAddTodo(newTodo)
       setTexto('');
+      setActiveModal(false);
     }else{
       console.log('Agrega un texto a tu tarea');
     }    
@@ -33,8 +33,8 @@ const NewToDo = () => {
   //Cancel Add Todo
   const handelCancelAddTodo = (e) => {
     e.preventDefault();
+    setActiveModal(false);
     setTexto('');
-    console.log('Cerrar ventana')
   };
 
   return (

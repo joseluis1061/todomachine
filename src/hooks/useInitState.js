@@ -1,21 +1,46 @@
 import { useState, useEffect } from 'react';
 
-const local = [
-  {task:'Comer', complete:true, id : 0},
-  {task:'Reir',  complete:false, id : 1},
-  {task:'Sacar los gatos', complete:true, id : 2},
-  {task:'Cocinar', complete:true, id : 3},
-  {task:'Programar', complete:true, id : 4},
-];
-
 
 const useInitState = () => {
-  const [todoListTask, setTodoListTask] = useState(local);
-  const [todoTask, setTodoTask] = useState(todoListTask);
+  const [todoListTask, setTodoListTask] = useState([]);
+  const [todoTask, setTodoTask] = useState([]);
+
+  //Local Storage
+  useEffect(()=>{
+    const obtenerLocalStorage = () => {
+      const remoteTodos = localStorage.getItem('todos_v1');
+      if(!remoteTodos){
+        console.log('Ingrese')
+        localStorage.setItem('todos_v1', JSON.stringify( todoListTask ));
+      }else{
+        const datos = JSON.parse(remoteTodos)
+        console.log('datos')
+        console.log(datos)
+        //Error no carga la lista datos al hacer el set
+        setTodoListTask(datos)
+        setTodoTask(datos)
+        console.log('todoListTask')
+        console.log(todoListTask)
+
+      }
+    }
+    obtenerLocalStorage();
+  }, []);
+
+  useEffect(() => {
+    console.log('Se actulizo la lista ')
+    localStorage.setItem('todos_v1', JSON.stringify( todoListTask ));
+  }, [todoListTask])
+
+
+
+  
   const [searchTask, setSearchTask] = useState('');
   const [completedTodo, setCompletedTodo] = useState({});
   const [deledTodo, setDeledTodo] = useState({});
   const [addTodo, setAddTodo] = useState({});
+  const [activeModal, setActiveModal] = useState(false);
+
 
   //Buscar una tarea
   useEffect(()=> {
@@ -23,7 +48,7 @@ const useInitState = () => {
       const keySearch = searchTask.toLowerCase();
       const todoFilters = todoListTask.filter((todo)=>{
         return todo.task.toLowerCase().includes(keySearch);
-      });
+      })
       if(Object.keys(todoFilters).length >0){
         setTodoTask(todoFilters);
         return
@@ -55,7 +80,7 @@ const useInitState = () => {
           todoList
       )
       setTodoListTask(filterDelete);
-      setTodoTask(filterDelete);
+      setTodoTask(filterDelete);    
       setSearchTask('');
     }    
   }, [deledTodo]);
@@ -63,10 +88,9 @@ const useInitState = () => {
   //Add ToDo
   useEffect(()=>{    
     if(Object.keys(addTodo).length>0){
-      let newTodoList = todoListTask;
-      newTodoList.push(addTodo);
-      setTodoListTask(newTodoList);
-      setTodoTask(todoListTask);
+      setTodoListTask([...todoListTask, addTodo]);
+      setTodoTask([...todoListTask, addTodo]);
+      console.log('Add TOdo')
       setSearchTask('');
       setAddTodo({});
     }    
@@ -80,7 +104,9 @@ const useInitState = () => {
     setSearchTask,
     setCompletedTodo, 
     setDeledTodo,
-    setAddTodo
+    setAddTodo,
+    activeModal,
+    setActiveModal
   }
 }
 
