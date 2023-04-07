@@ -9,8 +9,8 @@ const BtnNewTodo = () => {
     setActiveModal(!activeModal);
   }
   return (
-    <button 
-      className = 'btn_newtodo'
+    <button
+      className = 'btn_newtodo giro'
       onClick={handleClick}
       >
         <i className="fa-solid fa-plus"></i>
