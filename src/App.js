@@ -11,7 +11,7 @@ import './styles//App.css';
 
 function App() {
   const initialState = useInitState();
-  const {activeModal,setActiveModal} = initialState;
+  const {activeModal} = initialState;
   
   return (
     <AppContext.Provider value={initialState}>
