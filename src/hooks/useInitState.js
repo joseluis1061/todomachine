@@ -1,40 +1,30 @@
 import { useState, useEffect } from 'react';
 
-
 const useInitState = () => {
   const [todoListTask, setTodoListTask] = useState([]);
-  const [todoTask, setTodoTask] = useState([]);
+  const [todoTask, setTodoTask] = useState(todoListTask);
 
   //Local Storage
   useEffect(()=>{
-    const obtenerLocalStorage = () => {
+    const obtenerLocalStorage = async () => {
       const remoteTodos = localStorage.getItem('todos_v1');
       if(!remoteTodos){
-        console.log('Ingrese')
         localStorage.setItem('todos_v1', JSON.stringify( todoListTask ));
       }else{
-        const datos = JSON.parse(remoteTodos)
-        console.log('datos')
-        console.log(datos)
-        //Error no carga la lista datos al hacer el set
-        setTodoListTask(datos)
+        const datos = await JSON.parse(remoteTodos)
         setTodoTask(datos)
-        console.log('todoListTask')
-        console.log(todoListTask)
-
+        setTodoListTask(datos)
       }
     }
     obtenerLocalStorage();
   }, []);
 
+  // Guarda los cambios en LocalStorage
   useEffect(() => {
-    console.log('Se actulizo la lista ')
     localStorage.setItem('todos_v1', JSON.stringify( todoListTask ));
   }, [todoListTask])
 
-
-
-  
+  // Operaciones CRUD en las listas
   const [searchTask, setSearchTask] = useState('');
   const [completedTodo, setCompletedTodo] = useState({});
   const [deledTodo, setDeledTodo] = useState({});
@@ -58,7 +48,7 @@ const useInitState = () => {
     }
   }, [searchTask]);
 
-  //Agregar estado completado a una tarea
+  // Agregar estado completado a una tarea
   useEffect(()=>{    
     if(Object.keys(completedTodo).length>0){
       const filter = todoListTask.filter(todoList=>
@@ -72,7 +62,7 @@ const useInitState = () => {
     }    
   }, [completedTodo]);
 
-  //Deled ToDo
+  // Deled ToDo
   useEffect(()=>{    
     if(Object.keys(deledTodo).length>0){
       const filterDelete = todoListTask.filter(todoList=>
@@ -85,17 +75,15 @@ const useInitState = () => {
     }    
   }, [deledTodo]);
 
-  //Add ToDo
+  // Add ToDo
   useEffect(()=>{    
     if(Object.keys(addTodo).length>0){
       setTodoListTask([...todoListTask, addTodo]);
       setTodoTask([...todoListTask, addTodo]);
-      console.log('Add TOdo')
       setSearchTask('');
       setAddTodo({});
     }    
   }, [addTodo]);
-
 
   return {
     todoListTask,
